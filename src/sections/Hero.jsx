@@ -30,13 +30,13 @@ function Hero() {
                 View Work
               </a>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3 ">
               {[
                 { href: 'https://github.com/Mohadsk', icon: <RiGithubFill /> },
                 { href: 'https://www.linkedin.com/in/skmohammad7/', icon: <RiLinkedinBoxFill /> },
 
               ].map((item, index) => (
-                <a key={index} href={item.href} className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-lg text-gray-300 hover:bg-white/10 hover:text-cyan-300 transition">
+                <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-4xl text-gray-300 hover:bg-white/10 hover:text-cyan-300 transition">
                   {item.icon}
                 </a>
               ))}

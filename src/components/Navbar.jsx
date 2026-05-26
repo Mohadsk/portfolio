@@ -10,6 +10,7 @@ const navItems = [
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState("home")
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.target)
@@ -47,6 +48,16 @@ function Navbar() {
           Portfolio
         </a>
 
+        <div className="md:hidden">
+          <button onClick={() => setMobileOpen((s) => !s)} aria-label="Toggle menu" className="p-2 rounded-md text-gray-300 hover:bg-white/5">
+            {mobileOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+            )}
+          </button>
+        </div>
+
         <div className="relative hidden md:block">
           <ul className="flex items-center gap-6 text-sm lg:text-base uppercase tracking-[0.3em] text-gray-300">
             {navItems.map((item) => {
@@ -71,6 +82,18 @@ function Navbar() {
           </ul>
         </div>
       </div>
+
+      {mobileOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#050816]/95 border-b border-white/5">
+          <ul className="flex flex-col p-4">
+            {navItems.map((item) => (
+              <li key={item.target} className="border-b border-white/5 last:border-b-0">
+                <a href={`#${item.target}`} onClick={() => setMobileOpen(false)} className="block py-3 text-lg text-gray-300 hover:text-white">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   )
 }
